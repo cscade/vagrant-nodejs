@@ -11,12 +11,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "node-dev"
   
   config.vm.provision "chef_solo" do |chef|
-    chef.add_recipe "apt"
-    chef.add_recipe "build-essential"
-    chef.add_recipe "couchdb::source"
-    chef.add_recipe "nodejs"
     chef.add_recipe "redisio::install"
     chef.add_recipe "redisio::enable"
+    chef.add_recipe "nodejs"
+    chef.add_recipe "couchdb::source"
     
     chef.json = {
       "couch_db" => {
