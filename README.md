@@ -1,4 +1,4 @@
 vagrant-nodejs
 ==============
 
-Vagrant environment with node.js, redis, and courchdb.
+Vagrant environment with node.js, redis, and couchdb.
