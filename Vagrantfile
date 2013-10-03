@@ -15,6 +15,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "build-essential"
     chef.add_recipe "couchdb::source"
     chef.add_recipe "nodejs"
+    chef.add_recipe "redisio::install"
+    chef.add_recipe "redisio::enable"
+    
     chef.json = {
       "couch_db" => {
         "src_version" => "1.4.0",
@@ -22,6 +25,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       },
       "nodejs" => {
         "version" => "0.10.20"
+      },
+      "redis" => {
+        "version" => "2.6.16"
       }
     }
   end
