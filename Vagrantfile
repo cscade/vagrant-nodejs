@@ -4,12 +4,22 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  
+  # Base
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
   
+  # Hostname
   config.vm.hostname = "node-dev"
   
+  # Networking
+  config.vm.network "forwarded_port", guest: 3000, host: 8080
+  
+  # Application sharing
+  if Dir.exist?("../application")
+    config.vm.synced_folder "../application", "/home/vagrant/application"
+  end
+  
+  # Provisioning
   config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "redisio::install"
     chef.add_recipe "redisio::enable"
